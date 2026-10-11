@@ -2,75 +2,794 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Embedded Systems Master Plan</title>
-                <style>
-                        :root { --bg-primary: #0a0e17; --bg-secondary: #131b2e; --bg-card: #1c273e; --accent-cyan: #00f2fe; --accent-blue: #4facfe; --accent-green: #00e676; --accent-purple: #7c4dff; --accent-orange: #ff9100; --text-primary: #f0f4f8; --text-secondary: #94a3b8; --border-color: #2e3d5c; }
-                                * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
-                                        body { background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.6; padding-bottom: 50px; }
-                                                header { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); padding: 40px 20px; text-align: center; border-bottom: 2px solid var(--accent-cyan); }
-                                                        header h1 { font-size: 2.1rem; color: var(--accent-cyan); margin-bottom: 10px; }
-                                                                header p { color: var(--text-secondary); max-width: 950px; margin: 0 auto; }
-                                                                        .stats-banner { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px; }
-                                                                                .stat-card { background: rgba(19, 27, 46, 0.8); border: 1px solid var(--border-color); padding: 12px 20px; border-radius: 10px; text-align: center; min-width: 140px; }
-                                                                                        .stat-card .value { font-size: 1.5rem; font-weight: bold; color: var(--accent-cyan); }
-                                                                                                .stat-card .label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; }
-                                                                                                        .progress-container { max-width: 1100px; margin: 25px auto 0 auto; background: var(--bg-secondary); padding: 15px 20px; border-radius: 12px; border: 1px solid var(--border-color); }
-                                                                                                                .progress-bar-bg { background: #0d1527; height: 16px; border-radius: 8px; overflow: hidden; margin-top: 8px; }
-                                                                                                                        .progress-bar-fill { background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); height: 100%; width: 0%; transition: width 0.4s ease; }
-                                                                                                                                nav.tabs { display: flex; justify-content: center; background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; }
-                                                                                                                                        .tab-btn { background: none; border: none; color: var(--text-secondary); padding: 14px 18px; font-size: 0.92rem; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; }
-                                                                                                                                                .tab-btn:hover, .tab-btn.active { color: var(--accent-cyan); border-bottom-color: var(--accent-cyan); background: rgba(0, 242, 254, 0.05); }
-                                                                                                                                                        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-                                                                                                                                                                .tab-content { display: none; }
-                                                                                                                                                                        .tab-content.active { display: block; }
-                                                                                                                                                                                .phase-header { background: linear-gradient(90deg, var(--bg-secondary), var(--bg-card)); padding: 18px 25px; border-radius: 10px; margin-top: 25px; border-left: 5px solid var(--accent-cyan); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-                                                                                                                                                                                        .phase-header h2 { font-size: 1.25rem; }
-                                                                                                                                                                                                .week-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px; margin: 15px 0 15px 15px; padding: 20px; }
-                                                                                                                                                                                                        .week-card h3 { color: var(--accent-cyan); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 1.1rem; }
-                                                                                                                                                                                                                .checkbox-custom { width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent-green); }
-                                                                                                                                                                                                                        .meta-tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.78rem; font-weight: bold; margin-right: 8px; margin-bottom: 8px; }
-                                                                                                                                                                                                                                .tag-free { background: rgba(0, 230, 118, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
-                                                                                                                                                                                                                                        .tag-paid { background: rgba(255, 145, 0, 0.15); color: var(--accent-orange); border: 1px solid var(--accent-orange); }
-                                                                                                                                                                                                                                                .tag-cert { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
-                                                                                                                                                                                                                                                        .tag-practice { background: rgba(124, 77, 255, 0.15); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
-                                                                                                                                                                                                                                                                .tag-git { background: rgba(240, 80, 50, 0.15); color: #f05032; border: 1px solid #f05032; }
-                                                                                                                                                                                                                                                                        .topic-group { margin: 10px 0; }
-                                                                                                                                                                                                                                                                                .topic-group h4 { font-size: 0.92rem; color: var(--accent-blue); margin-bottom: 3px; }
-                                                                                                                                                                                                                                                                                        .topic-group p { font-size: 0.88rem; color: var(--text-secondary); }
-                                                                                                                                                                                                                                                                                                .study-link { display: inline-block; margin-top: 8px; color: var(--accent-cyan); text-decoration: none; font-weight: 600; font-size: 0.88rem; }
-                                                                                                                                                                                                                                                                                                        .study-link:hover { text-decoration: underline; }
-                                                                                                                                                                                                                                                                                                                pre { background: #0d1527; padding: 15px; border-radius: 8px; border: 1px solid var(--border-color); overflow-x: auto; font-family: monospace; font-size: 0.85rem; color: var(--accent-cyan); margin-top: 10px; }
-                                                                                                                                                                                                                                                                                                                        .badge { background: rgba(0, 230, 118, 0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
-                                                                                                                                                                                                                                                                                                                            </style>
-                                                                                                                                                                                                                                                                                                                            </head>
-                                                                                                                                                                                                                                                                                                                            <body>
-                                                                                                                                                                                                                                                                                                                            <header>
-                                                                                                                                                                                                                                                                                                                                <h1>⚡ 10-Month Embedded Systems & Firmware Master Plan</h1>
-                                                                                                                                                                                                                                                                                                                                    <p>43 Weeks • 12–14 Hours/Week | Integrated with Git Monorepo, QEMU Emulation, Zephyr RTOS & Rust Embassy</p>
-                                                                                                                                                                                                                                                                                                                                        <div class="stats-banner">
-                                                                                                                                                                                                                                                                                                                                                <div class="stat-card"><div class="value">43 Weeks</div><div class="label">Duration</div></div>
-                                                                                                                                                                                                                                                                                                                                                        <div class="stat-card"><div class="value">12–14 Hrs</div><div class="label">Weekly Effort</div></div>
-                                                                                                                                                                                                                                                                                                                                                                <div class="stat-card"><div class="value">6 Stages</div><div class="label">Roadmap</div></div>
-                                                                                                                                                                                                                                                                                                                                                                        <div class="stat-card"><div class="value">Zephyr + Rust</div><div class="label">Advanced RTOS</div></div>
-                                                                                                                                                                                                                                                                                                                                                                            </div>
-                                                                                                                                                                                                                                                                                                                                                                                <div class="progress-container">
-                                                                                                                                                                                                                                                                                                                                                                                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
-                                                                                                                                                                                                                                                                                                                                                                                                    <span>Master Curriculum Progress</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                <span id="progress-percent">0% Completed (0/43 Weeks)</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    </div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    </header>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    <nav class="tabs">
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <button class="tab-btn active" onclick="switchTab('stage1')">🥇 Stage 1: Fastbit</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                            <button class="tab-btn" onclick="switchTab('stage2')">🥈 Stage 2: Arm & UT</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                <button class="tab-btn" onclick="switchTab('stage3')">🥉 Stage 3: FreeRTOS</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button class="tab-btn" onclick="switchTab('stage4')">🎓 Stage 4: CU Boulder</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button class="tab-btn" onclick="switchTab('stage5')">🚀 Stage 5: Zephyr RTOS</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button class="tab-btn" onclick="switchTab('stage6')">🦀 Stage 6: Rust & Embassy</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <button class="tab-btn" onclick="switchTab('gitrepo')">🐙 GitHub Repo</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <button class="tab-btn" onclick="switchTab('engineering')">⚙️ CI/CD & QEMU</button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </nav>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="container">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Systems & Firmware Engineering Master Plan (43 Weeks)</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #131b2e;
+            --bg-card: #1c273e;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-green: #00e676;
+            --accent-purple: #7c4dff;
+            --accent-orange: #ff9100;
+            --text-primary: #f0f4f8;
+            --text-secondary: #94a3b8;
+            --border-color: #2e3d5c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .stats-banner {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .stat-card {
+            background: rgba(19, 27, 46, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-cyan);
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .progress-container {
+            max-width: 1100px;
+            margin: 25px auto 0 auto;
+            background: var(--bg-secondary);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-bar-bg {
+            background: #0d1527;
+            height: 16px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        nav.tabs {
+            display: flex;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 14px 18px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .phase-header {
+            background: linear-gradient(90deg, var(--bg-secondary), var(--bg-card));
+            padding: 18px 25px;
+            border-radius: 10px;
+            margin-top: 25px;
+            border-left: 5px solid var(--accent-cyan);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .phase-header h2 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .week-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            margin: 15px 0 15px 15px;
+            padding: 20px;
+        }
+
+        .week-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .checkbox-custom {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent-green);
+        }
+
+        .meta-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-weight: bold;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tag-free { background: rgba(0, 230, 118, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+        .tag-paid { background: rgba(255, 145, 0, 0.15); color: var(--accent-orange); border: 1px solid var(--accent-orange); }
+        .tag-cert { background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+        .tag-practice { background: rgba(124, 77, 255, 0.15); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+        .tag-git { background: rgba(240, 80, 50, 0.15); color: #f05032; border: 1px solid #f05032; }
+
+        .topic-group {
+            margin: 10px 0;
+        }
+
+        .topic-group h4 {
+            font-size: 0.92rem;
+            color: var(--accent-blue);
+            margin-bottom: 3px;
+        }
+
+        .topic-group p {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .study-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+        }
+
+        .study-link:hover {
+            text-decoration: underline;
+        }
+
+        pre {
+            background: #0d1527;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            overflow-x: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            margin-top: 10px;
+        }
+
+        .badge {
+            background: rgba(0, 230, 118, 0.15);
+            color: var(--accent-green);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>⚡ 10-Month Embedded Systems & Firmware Master Plan</h1>
+    <p>43 Weeks • 12–14 Hours/Week | Integrated with Git Monorepo, QEMU Emulation, Zephyr RTOS & Rust Embassy</p>
+
+    <div class="stats-banner">
+        <div class="stat-card">
+            <div class="value">43 Weeks</div>
+            <div class="label">Duration</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">12–14 Hrs</div>
+            <div class="label">Weekly Effort</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">6 Stages</div>
+            <div class="label">Roadmap</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">Zephyr + Rust</div>
+            <div class="label">Advanced RTOS</div>
+        </div>
+    </div>
+
+    <div class="progress-container">
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem;">
+            <span>Master Curriculum Progress</span>
+            <span id="progress-percent">0% Completed (0/43 Weeks)</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+    </div>
+</header>
+
+<nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('stage1')">🥇 Stage 1: Fastbit</button>
+    <button class="tab-btn" onclick="switchTab('stage2')">🥈 Stage 2: Arm & UT</button>
+    <button class="tab-btn" onclick="switchTab('stage3')">🥉 Stage 3: FreeRTOS</button>
+    <button class="tab-btn" onclick="switchTab('stage4')">🎓 Stage 4: CU Boulder</button>
+    <button class="tab-btn" onclick="switchTab('stage5')">🚀 Stage 5: Zephyr RTOS</button>
+    <button class="tab-btn" onclick="switchTab('stage6')">🦀 Stage 6: Rust & Embassy</button>
+    <button class="tab-btn" onclick="switchTab('gitrepo')">🐙 GitHub Repo</button>
+    <button class="tab-btn" onclick="switchTab('engineering')">⚙️ CI/CD & QEMU</button>
+</nav>
+
+<div class="container">
+
+    <!-- STAGE 1 -->
+    <div id="stage1" class="tab-content active">
+        <div class="phase-header">
+            <h2>Stage 1: Bare-Metal Driver Engineering (Weeks 1–8)</h2>
+            <span class="badge">Certificates: Fastbit C & MCU1/MCU2</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 1: Low-Level C Foundations, Git Repo Setup & Unity Suite <input type="checkbox" class="checkbox-custom" id="w1" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Git Setup</span> <span class="meta-tag tag-practice">Unity Test Framework</span>
+            <div class="topic-group"><h4>Topics</h4><p>Pointers, raw physical address casting, volatile keyword, section alignment (.text, .data, .bss, stack, heap).</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Initialize <code>embedded-firmware-mastery</code> monorepo on GitHub. Configure <code>.gitignore</code>.<br><strong>Scheduled Commit:</strong> <code>feat(setup): initialize monorepo structure and unity unit test framework</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/microcontroller-embedded-c-programming/" target="_blank">🔗 Study Here: Fastbit Embedded C Course →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 2: ARM Cortex-M Core & Code Formatting Rules <input type="checkbox" class="checkbox-custom" id="w2" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Conventional Commit</span> <span class="meta-tag tag-practice">.clang-format</span>
+            <div class="topic-group"><h4>Topics</h4><p>Cortex-M4 registers (R0-R15), Thread vs Handler mode, MSP vs PSP, Vector Table layout.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Create <code>.clang-format</code> file in repo root. Enforce standard code styling.<br><strong>Scheduled Commit:</strong> <code>style(cortex-m): format vector table and add .clang-format rules</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/" target="_blank">🔗 Study Here: Fastbit MCU1 Course →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 3: Toolchain, Linker Scripts, QEMU & GitHub Actions CI <input type="checkbox" class="checkbox-custom" id="w3" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">GitHub Actions CI</span> <span class="meta-tag tag-practice">QEMU Emulation</span>
+            <div class="topic-group"><h4>Topics</h4><p>arm-none-eabi-gcc cross compilation, startup.c, Vector Table initialization, .ld linker scripts, QEMU setup (`qemu-system-arm`).</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Configure GitHub Actions workflow (<code>.github/workflows/build-test.yml</code>) to compile C code and run virtual ARM binaries in QEMU on every push.<br><strong>Scheduled Commit:</strong> <code>ci(workflow): add github actions build and test pipeline</code></p></div>
+            <a class="study-link" href="https://fastbitlab.com/" target="_blank">🔗 Study Here: Fastbit Startup & Linker Section →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 4: Interrupt Architecture & Static Analysis <input type="checkbox" class="checkbox-custom" id="w4" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">Cppcheck Analysis</span>
+            <div class="topic-group"><h4>Topics</h4><p>NVIC register structures, preemption vs sub-priority, interrupt latency, tail-chaining.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Integrate Cppcheck static analysis into local CMake build scripts and GitHub Actions workflow.<br><strong>Scheduled Commit:</strong> <code>feat(nvic): implement exti gpio interrupt driver with debouncing</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/" target="_blank">🔗 Study Here: Fastbit MCU1 Interrupts →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 5: Clock Tree, Power & GPIO Driver HAL <input type="checkbox" class="checkbox-custom" id="w5" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Feature Branch</span>
+            <div class="topic-group"><h4>Topics</h4><p>RCC clock registers, PLLs, prescalers, GPIO push-pull vs open-drain, pull-up/down setup.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Create feature branch <code>feat/stage-1-gpio-driver</code>. Isolate GPIO register access behind HAL functions.<br><strong>Scheduled Commit:</strong> <code>feat(gpio): implement modular bare-metal gpio driver library</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/" target="_blank">🔗 Study Here: Fastbit GPIO Driver Section →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 6: USART Driver & Ring Buffer Unit Tests <input type="checkbox" class="checkbox-custom" id="w6" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">Unity Unit Tests</span>
+            <div class="topic-group"><h4>Topics</h4><p>Asynchronous framing, baud rate registers, status flags, interrupt-driven ring buffers.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Write Unity unit tests for RX/TX circular ring buffers executed on x86 PC.<br><strong>Scheduled Commit:</strong> <code>test(usart): add unity tests for circular rx/tx ring buffer</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/" target="_blank">🔗 Study Here: Fastbit USART Driver Section →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 7: I2C Master Driver & State Machine Unit Tests <input type="checkbox" class="checkbox-custom" id="w7" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">Mock Register Tests</span>
+            <div class="topic-group"><h4>Topics</h4><p>I2C START/STOP conditions, 7-bit addressing, ACK/NACK handling, clock stretching.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Validate I2C frame generation logic using mock register structures in Unity test files.<br><strong>Scheduled Commit:</strong> <code>feat(i2c): implement bare-metal master driver for MPU6050 sensor</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/" target="_blank">🔗 Study Here: Fastbit I2C Driver Section →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 8: SPI Driver, DMA & Stage 1 PR Merge <input type="checkbox" class="checkbox-custom" id="w8" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Pull Request Merge</span>
+            <div class="topic-group"><h4>Topics</h4><p>SPI CPOL/CPHA modes, full-duplex configuration, Direct Memory Access (DMA) channels.</p></div>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Open PR on GitHub merging <code>feat/stage-1-drivers</code> into <code>main</code>. Verify CI pipeline passes clean.<br><strong>Scheduled Commit:</strong> <code>feat(spi): implement dma frame-buffer stream driver for oled</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-microcontroller2-with-peripherals/" target="_blank">🔗 Study Here: Fastbit MCU2 SPI & DMA →</a>
+        </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div id="stage2" class="tab-content">
+        <div class="phase-header">
+            <h2>Stage 2: Official Architecture & Hardware Interfacing (Weeks 9–17)</h2>
+            <span class="badge">Certificates: Arm Professional + UT Austin</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 9: UT Austin - Circuit Interfacing & Schematic Docs <input type="checkbox" class="checkbox-custom" id="w9" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">Schematic Docs</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Switch/LED circuit design, Ohm's law, MCU I/O ports. Document KiCAD schematics in repository.<br><strong>Scheduled Commit:</strong> <code>docs(schematics): add kibad circuit schematic for LED matrix</code></p></div>
+            <a class="study-link" href="https://users.ece.utexas.edu/~valvano/edX/" target="_blank">🔗 Study Here: UT Austin Embedded Systems edX →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 10: UT Austin - Analog-to-Digital Conversion (ADC) <input type="checkbox" class="checkbox-custom" id="w10" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-practice">ADC Math Tests</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Nyquist theorem, ADC sampling, quantization noise. Write C unit tests for raw-to-voltage math.<br><strong>Scheduled Commit:</strong> <code>test(adc): add unity tests for ADC voltage scaling equations</code></p></div>
+            <a class="study-link" href="https://www.edx.org/course/embedded-systems-shape-the-world-microcontroller-i" target="_blank">🔗 Study Here: UT Austin edX Vol 1 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 11: UT Austin - Timers, PWM & Sound Generation <input type="checkbox" class="checkbox-custom" id="w11" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">PWM Signal Capture</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Timer reload values, PWM duty cycles, DAC sound output. Capture logic traces of PWM frequency.<br><strong>Scheduled Commit:</strong> <code>docs(pwm): add logic analyzer capture of audio tone PWM</code></p></div>
+            <a class="study-link" href="https://www.edx.org/course/embedded-systems-shape-the-world-multi-threaded-i" target="_blank">🔗 Study Here: UT Austin edX Vol 2 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 12: Logic Analyzer Signal Traces & Documentation <input type="checkbox" class="checkbox-custom" id="w12" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free Tool</span> <span class="meta-tag tag-git">Logic Traces (.png)</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Capture physical UART, I2C, SPI timing frames; embed annotated .png signal captures in docs.<br><strong>Scheduled Commit:</strong> <code>docs(protocols): add saleae logic traces for I2C and SPI frames</code></p></div>
+            <a class="study-link" href="https://www.saleae.com/downloads/" target="_blank">🔗 Download Tool: Saleae Logic 2 Software →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 13: Advanced GDB Debugging, QEMU Remote & HardFault Handler <input type="checkbox" class="checkbox-custom" id="w13" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free OpenOCD / QEMU</span> <span class="meta-tag tag-practice">Stack Frame Dumps</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>OpenOCD & QEMU GDB servers (`-s -S` remote debugging), watchpoints, disassembly inspection, HardFault stack dumps.<br><strong>Scheduled Commit:</strong> <code>feat(debug): add hardfault stack frame dump to usart log</code></p></div>
+            <a class="study-link" href="https://openocd.org/doc/html/index.html" target="_blank">🔗 Study Here: OpenOCD & QEMU Documentation →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 14: Arm Education - CMSIS-Core Architecture <input type="checkbox" class="checkbox-custom" id="w14" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-cert">Arm Cert ($149)</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>CMSIS-Core standard, ARM assembly interworking, MPU setup. Maintain CMSIS driver compliance.<br><strong>Scheduled Commit:</strong> <code>refactor(cmsis): align core headers with ARM CMSIS v5 standard</code></p></div>
+            <a class="study-link" href="https://www.edx.org/professional-certificate/armeducationx-embedded-systems-essentials" target="_blank">🔗 Study Here: Arm Education Essentials edX →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 15: Arm Education - CMSIS-Driver & Serial Protocols <input type="checkbox" class="checkbox-custom" id="w15" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-practice">CMSIS Wrapper Tests</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Standardized CMSIS-Driver APIs for USART, SPI, I2C. Write CMSIS wrapper host unit tests.<br><strong>Scheduled Commit:</strong> <code>test(cmsis-usart): add host unit tests for CMSIS uart wrapper</code></p></div>
+            <a class="study-link" href="https://www.edx.org/professional-certificate/armeducationx-embedded-systems-essentials" target="_blank">🔗 Study Here: Arm Education Module 3-4 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 16: Arm Education - Practical Hardware Co-Design <input type="checkbox" class="checkbox-custom" id="w16" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">Power Profiling</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Sensor fusion, power management, system clocks. Write low-power sleep state transitions.<br><strong>Scheduled Commit:</strong> <code>feat(power): implement low-power sleep mode with RTC wake interrupt</code></p></div>
+            <a class="study-link" href="https://www.edx.org/course/getting-practical-with-hardware" target="_blank">🔗 Study Here: Arm Practical Hardware edX →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 17: Stage 2 Review & Arm + UT Austin Cert Exams <input type="checkbox" class="checkbox-custom" id="w17" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-cert">Certificate Milestone</span>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Update master README.md with verified Arm and UT Austin certification badges.<br><strong>Scheduled Commit:</strong> <code>docs(readme): add verified Arm Professional certificate badge</code></p></div>
+            <a class="study-link" href="https://www.edx.org/professional-certificate/armeducationx-embedded-systems-essentials" target="_blank">🔗 Exam Portal: edX Arm Professional Certificate →</a>
+        </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div id="stage3" class="tab-content">
+        <div class="phase-header">
+            <h2>Stage 3: Production RTOS & Firmware Infrastructure (Weeks 18–25)</h2>
+            <span class="badge">Certificates: Fastbit FreeRTOS & Bootloader</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 18: FreeRTOS Kernel Mechanics & Stack Hook <input type="checkbox" class="checkbox-custom" id="w18" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">Stack Overflow Hook</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Preemptive scheduling, TCBs, stack allocation. Configure stack overflow hook for diagnostic dumps.<br><strong>Scheduled Commit:</strong> <code>feat(freertos): initialize kernel tasks and add stack overflow hook</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-freertos-hands-on-with-cortex-m-microcontrollers/" target="_blank">🔗 Study Here: Fastbit FreeRTOS Course →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 19: Concurrency, Mutexes & SystemView Tracing <input type="checkbox" class="checkbox-custom" id="w19" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">SystemView Traces</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Mutexes vs Semaphores, Priority Inheritance. Profile mutex contention using SEGGER SystemView.<br><strong>Scheduled Commit:</strong> <code>docs(freertos): add systemview trace logs for priority inheritance</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-freertos-hands-on-with-cortex-m-microcontrollers/" target="_blank">🔗 Study Here: Fastbit FreeRTOS Mutex Section →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 20: Thread-Safe Queues & Message Unit Tests <input type="checkbox" class="checkbox-custom" id="w20" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">Queue Unit Tests</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Thread-safe message queues, Event Groups. Write Unity tests for telemetry message struct formatting.<br><strong>Scheduled Commit:</strong> <code>test(queue): add host unit tests for sensor telemetry queue struct</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/mastering-freertos-hands-on-with-cortex-m-microcontrollers/" target="_blank">🔗 Study Here: Fastbit FreeRTOS Queues →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 21: Deferred Interrupt Handling & Software Timers <input type="checkbox" class="checkbox-custom" id="w21" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Deferring ISR execution to daemon tasks, software timers. Profile ISR latency.<br><strong>Scheduled Commit:</strong> <code>feat(rtos-timer): implement deferred interrupt processing thread</code></p></div>
+            <a class="study-link" href="https://fastbitlab.com/" target="_blank">🔗 Study Here: Fastbit FreeRTOS Timers →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 22: Custom Bootloader Architecture & Memory Maps <input type="checkbox" class="checkbox-custom" id="w22" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Memory Map Docs</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Internal Flash sector organization, VTOR relocation. Document flash memory partitioning.<br><strong>Scheduled Commit:</strong> <code>docs(bootloader): define flash memory partitioning and VTOR layout</code></p></div>
+            <a class="study-link" href="https://www.udemy.com/course/short-course-on-bootloader-development/" target="_blank">🔗 Study Here: Fastbit Custom Bootloader Course →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 23: Bootloader Flashing Routine & Host Python Script <input type="checkbox" class="checkbox-custom" id="w23" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-git">Python Flasher</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Host UART flashing protocol, binary payload writing. Write host Python script (flash_tool.py).<br><strong>Scheduled Commit:</strong> <code>feat(bootloader): write host python UART flasher tool</code></p></div>
+            <a class="study-link" href="https://fastbitlab.com/" target="_blank">🔗 Study Here: Fastbit Bootloader Programming →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 24: System Safety, Watchdogs & CRC32 Unit Tests <input type="checkbox" class="checkbox-custom" id="w24" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-paid">Paid / Udemy Subscription</span> <span class="meta-tag tag-practice">CRC32 Testing</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Independent Watchdog (IWDG), CRC32 verification. Write unit test for CRC32 calculation.<br><strong>Scheduled Commit:</strong> <code>test(crc32): verify host and target CRC32 checksum algorithms</code></p></div>
+            <a class="study-link" href="https://fastbitlab.com/" target="_blank">🔗 Study Here: Fastbit Bootloader Safety →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 25: Stage 3 Review & Fastbit Certifications <input type="checkbox" class="checkbox-custom" id="w25" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-cert">Certificate Milestone</span>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Update master README.md with Fastbit FreeRTOS and Bootloader completion badges.<br><strong>Scheduled Commit:</strong> <code>docs(readme): update repo status with stage 3 completion certs</code></p></div>
+            <a class="study-link" href="https://fastbitlab.com/" target="_blank">🔗 Fastbit Portal: Claim Certificates →</a>
+        </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div id="stage4" class="tab-content">
+        <div class="phase-header">
+            <h2>Stage 4: Academic Real-Time Systems Theory & Capstone (Weeks 26–35)</h2>
+            <span class="badge">Certificate: CU Boulder Specialization (4 Courses)</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 26: CU Boulder Course 1 - RMS & POSIX pthreads <input type="checkbox" class="checkbox-custom" id="w26" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">POSIX Lab</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Rate Monotonic (RM) scheduling theory, POSIX threads (pthreads). Compile pthread code under Linux/WSL2.<br><strong>Scheduled Commit:</strong> <code>feat(posix-rt): implement rate monotonic pthread scheduling lab</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices" target="_blank">🔗 Study Here: CU Boulder Course 1 on Coursera →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 27: CU Boulder Course 1 - Real-Time Linux & Jitter <input type="checkbox" class="checkbox-custom" id="w27" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">Linux Timing Scripts</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Clock resolution, PREEMPT_RT patch. Write Linux timing measurement scripts verifying execution jitter.<br><strong>Scheduled Commit:</strong> <code>test(jitter): add timing measurement scripts for pthread execution</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-embedded-systems-concepts-practices" target="_blank">🔗 Study Here: CU Boulder Course 1 Module 3-4 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 28: CU Boulder Course 2 - Dynamic Priority (EDF & LLF) <input type="checkbox" class="checkbox-custom" id="w28" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-practice">EDF Simulator</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Earliest Deadline First (EDF), Least Laxity First (LLF). Build a host C simulator evaluating EDF feasibility.<br><strong>Scheduled Commit:</strong> <code>feat(edf-sim): implement host C simulator for EDF scheduling feasibility</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-embedded-systems-theory-analysis" target="_blank">🔗 Study Here: CU Boulder Course 2 on Coursera →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 29: CU Boulder Course 2 - Priority Inversion & PCP <input type="checkbox" class="checkbox-custom" id="w29" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-practice">PCP Unit Tests</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Priority Ceiling Protocol (PCP), Priority Inheritance (PIP). Implement tests preventing resource deadlocks.<br><strong>Scheduled Commit:</strong> <code>test(deadlock): add unity tests for priority ceiling protocol logic</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-embedded-systems-theory-analysis" target="_blank">🔗 Study Here: CU Boulder Course 2 Module 3-4 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 30: CU Boulder Course 3 - Flash File Systems & ECC <input type="checkbox" class="checkbox-custom" id="w30" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-practice">ECC Unit Tests</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Flash wear leveling, ECC memory (SECDED). Write C unit test verifying Hamming code error correction.<br><strong>Scheduled Commit:</strong> <code>test(ecc): add unit tests for SECDED hamming error correction</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-mission-critical-systems-design" target="_blank">🔗 Study Here: CU Boulder Course 3 on Coursera →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 31: CU Boulder Course 3 - Fail-Safe Systems <input type="checkbox" class="checkbox-custom" id="w31" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free to Audit</span> <span class="meta-tag tag-git">Mermaid State Machine</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Redundancy patterns, watchdog loops. Document fail-safe rollback state machine in Mermaid syntax.<br><strong>Scheduled Commit:</strong> <code>docs(fail-safe): document system rollback state machine in mermaid</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-mission-critical-systems-design" target="_blank">🔗 Study Here: CU Boulder Course 3 Module 3-4 →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 32: Capstone Phase 1 - Architecture Setup <input type="checkbox" class="checkbox-custom" id="w32" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Independent Lab</span> <span class="meta-tag tag-git">CMake Targets</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Architectural decomposition: Bootloader + FreeRTOS telemetry node. Configure CMake build targets.<br><strong>Scheduled Commit:</strong> <code>feat(capstone): initialize capstone project build configuration</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/learn/real-time-embedded-systems-capstone" target="_blank">🔗 Study Here: CU Boulder Capstone Course →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 33: Capstone Phase 2 - Multi-Threaded Telemetry Core <input type="checkbox" class="checkbox-custom" id="w33" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Independent Lab</span> <span class="meta-tag tag-practice">Cppcheck Analysis</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Sensor task (MPU6050), OLED display task (SSD1306), UART CLI thread. Run full Cppcheck static scan.<br><strong>Scheduled Commit:</strong> <code>feat(capstone): integrate multi-threaded sensor and oled telemetry core</code></p></div>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 34: Capstone Phase 3 - Fault Recovery & Traces <input type="checkbox" class="checkbox-custom" id="w34" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Independent Lab</span> <span class="meta-tag tag-git">Saleae Traces</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Stack high-water mark profiling, watchdog reset recovery. Capture logic traces under high CPU load.<br><strong>Scheduled Commit:</strong> <code>docs(capstone): add saleae logic traces under maximum CPU telemetry load</code></p></div>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 35: Portfolio Publishing & Certificate Collection <input type="checkbox" class="checkbox-custom" id="w35" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-cert">Final Master Credential</span>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Polish README.md with system architecture diagrams, build badges, and YouTube demonstration link.<br><strong>Scheduled Commit:</strong> <code>docs(readme): finalize capstone documentation and portfolio landing page</code></p></div>
+            <a class="study-link" href="https://www.coursera.org/specializations/real-time-embedded-systems" target="_blank">🔗 Coursera Specialization Final Portal →</a>
+        </div>
+    </div>
+
+    <!-- STAGE 5 -->
+    <div id="stage5" class="tab-content">
+        <div class="phase-header">
+            <h2>Stage 5: Enterprise Zephyr RTOS & Devicetree (Weeks 36–40)</h2>
+            <span class="badge">Industry Focus: Enterprise IoT & Nordic/NXP</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 36: Zephyr Architecture, `west` Build Tool & Devicetree <input type="checkbox" class="checkbox-custom" id="w36" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">West CLI & DTS</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Linux Foundation model, Kconfig configuration system, Devicetree syntax (`.dts` / `.overlay`), `west` meta-tool.<br><strong>Scheduled Commit:</strong> <code>feat(zephyr): setup west workspace and devicetree overlay for Nucleo board</code></p></div>
+            <a class="study-link" href="https://docs.zephyrproject.org/latest/" target="_blank">🔗 Study Here: Zephyr RTOS Documentation →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 37: Zephyr Kernel Primitives (Threads & Workqueues) <input type="checkbox" class="checkbox-custom" id="w37" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">k_work & k_thread</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p><code>k_thread</code>, system workqueues (`k_work`), ISR offloading, mutexes, and semaphores vs FreeRTOS APIs.<br><strong>Scheduled Commit:</strong> <code>feat(zephyr): implement multi-threaded telemetry pipeline using k_work queues</code></p></div>
+            <a class="study-link" href="https://docs.zephyrproject.org/latest/kernel/index.html" target="_blank">🔗 Study Here: Zephyr Kernel APIs →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 38: Zephyr Hardware Abstraction Layer & Sensor Drivers <input type="checkbox" class="checkbox-custom" id="w38" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">DEVICE_DT_GET</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Device driver API model (`DEVICE_DT_GET`), I2C/SPI sensor bindings, Zephyr power management framework.<br><strong>Scheduled Commit:</strong> <code>feat(zephyr-drivers): implement I2C and SPI sensor drivers via Devicetree bindings</code></p></div>
+            <a class="study-link" href="https://docs.zephyrproject.org/latest/services/device_mgmt/index.html" target="_blank">🔗 Study Here: Zephyr Driver Model →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 39: Zephyr Shell CLI & Logging Subsystem <input type="checkbox" class="checkbox-custom" id="w39" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">Zephyr Shell Subsystem</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Built-in Zephyr Shell subsystem, thread-safe asynchronous logging (`LOG_MODULE_REGISTER`), CTF tracing.<br><strong>Scheduled Commit:</strong> <code>feat(zephyr-shell): add custom terminal debugging commands via Zephyr shell</code></p></div>
+            <a class="study-link" href="https://docs.zephyrproject.org/latest/services/shell.html" target="_blank">🔗 Study Here: Zephyr Logging & Shell →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 40: Zephyr Network Stack / BLE & QEMU CI Integration <input type="checkbox" class="checkbox-custom" id="w40" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">QEMU Cortex-M3 Target</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Bluetooth Low Energy (BLE) host/controller split, QEMU `qemu_cortex_m3` target execution in GitHub Actions CI.<br><strong>Scheduled Commit:</strong> <code>ci(zephyr): add native Zephyr QEMU automated build and test pipeline</code></p></div>
+            <a class="study-link" href="https://docs.zephyrproject.org/latest/boards/qemu/cortex_m3/doc/index.html" target="_blank">🔗 Study Here: Zephyr QEMU Support →</a>
+        </div>
+    </div>
+
+    <!-- STAGE 6 -->
+    <div id="stage6" class="tab-content">
+        <div class="phase-header">
+            <h2>Stage 6: Modern Safety-Critical Embedded Systems with Rust / Embassy (Weeks 41–43)</h2>
+            <span class="badge">Industry Focus: Next-Gen Automotive & Safety-Critical</span>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 41: Bare-Metal Rust Foundations (`no_std`) & PAC/HAL <input type="checkbox" class="checkbox-custom" id="w41" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">no_std Rust</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p><code>no_std</code> Rust environment, ownership/borrowing in embedded contexts, Peripheral Access Crates (PAC).<br><strong>Scheduled Commit:</strong> <code>feat(rust): initialize no_std bare-metal rust crate for Cortex-M</code></p></div>
+            <a class="study-link" href="https://docs.rust-embedded.org/book/" target="_blank">🔗 Study Here: Embedded Rust Book →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 42: Embassy Async Framework & Hardware Interrupts <input type="checkbox" class="checkbox-custom" id="w42" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-free">Free / Open Source</span> <span class="meta-tag tag-practice">Async Embassy Executor</span>
+            <div class="topic-group"><h4>Topics & Practice</h4><p>Asynchronous C/C++ replacement, Embassy executor, async GPIO/UART interrupts, zero-cost abstractions.<br><strong>Scheduled Commit:</strong> <code>feat(embassy): implement async UART driver using embassy executor</code></p></div>
+            <a class="study-link" href="https://embassy.dev/book/" target="_blank">🔗 Study Here: Embassy Async Book →</a>
+        </div>
+
+        <div class="week-card">
+            <h3>Week 43: Final 10-Month Master Portfolio Consolidation <input type="checkbox" class="checkbox-custom" id="w43" onchange="updateProgress()"></h3>
+            <span class="meta-tag tag-cert">Portfolio Milestone</span>
+            <div class="topic-group"><h4>GitHub Task & Scheduled Commit</h4><p>Update master README.md with Zephyr RTOS & Rust/Embassy badges, updated architecture diagrams, and complete 10-month portfolio index.<br><strong>Scheduled Commit:</strong> <code>docs(readme): publish complete 10-month master embedded systems portfolio</code></p></div>
+            <a class="study-link" href="https://github.com/" target="_blank">🔗 Master Repository: GitHub Hub →</a>
+        </div>
+    </div>
+
+    <!-- GITHUB REPO MANAGEMENT -->
+    <div id="gitrepo" class="tab-content">
+        <h2>🐙 GitHub Repository Setup, Architecture & Commit Routine</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Enterprise-grade monorepo setup and Conventional Commits workflow.</p>
+
+        <div class="week-card" style="margin-left:0;">
+            <h3>1. Initial Monorepo Setup & Branch Protection</h3>
+<pre>
+# Initializing Monorepo locally
+git init embedded-firmware-mastery
+cd embedded-firmware-mastery
+git branch -M main
+
+# .gitignore for Embedded C Projects
+build/
+build-*/
+*.elf
+*.hex
+*.bin
+*.o
+*.d
+.vscode/
+.idea/
+</pre>
+        </div>
+
+        <div class="week-card" style="margin-left:0;">
+            <h3>2. Conventional Commits Standard Specification</h3>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">Format: <code>type(scope): concise description</code></p>
+            <ul style="margin-left: 20px; font-size: 0.88rem; color: var(--text-secondary);">
+                <li><code>feat(i2c)</code>: New peripheral driver or system feature.</li>
+                <li><code>fix(usart)</code>: Resolving a driver bug or register calculation.</li>
+                <li><code>test(ring-buf)</code>: Adding or updating Unity host unit tests.</li>
+                <li><code>docs(readme)</code>: Documentation, KiCAD schematics, or Saleae traces.</li>
+                <li><code>ci(workflow)</code>: Updating GitHub Actions build & test scripts.</li>
+                <li><code>style(format)</code>: Formatting code using .clang-format rules.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ENGINEERING PRACTICES & CI/CD -->
+    <div id="engineering" class="tab-content">
+        <h2>⚙️ Professional Firmware Engineering & QEMU CI/CD</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 20px;">Automated QEMU emulation and host testing pipeline.</p>
+
+        <div class="week-card" style="margin-left:0;">
+            <h3>Automated GitHub Actions Workflow (.github/workflows/build-test.yml)</h3>
+<pre>
+name: Firmware Build, Test & Emulation Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install ARM Toolchain & Build Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi gcc cmake ninja-build cppcheck qemu-system-arm
+
+      - name: Run Host C Unit Tests (Unity Framework)
+        run: |
+          mkdir -p build-tests && cd build-tests
+          cmake -DBUILD_TESTS=ON ..
+          make && ctest --output-on-failure
+
+      - name: Run Cppcheck Static Analysis
+        run: |
+          cppcheck --enable=all --suppress=missingIncludeSystem stage-1-baremetal-drivers/
+
+      - name: Build Bare-Metal ARM Firmware Binaries
+        run: |
+          mkdir -p build-firmware && cd build-firmware
+          cmake -DCMAKE_TOOLCHAIN_FILE=../tools/arm-none-eabi-toolchain.cmake ..
+          make
+
+      - name: Execute ARM Binary in QEMU Emulation
+        run: |
+          qemu-system-arm -M stm32vldiscovery \
+            -kernel build-firmware/firmware.bin \
+            -nographic \
+            -icount shift=7,align=off,sleep=off \
+            -device loader,file=build-firmware/firmware.bin
+</pre>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('.checkbox-custom');
+        let checkedCount = 0;
+        checkboxes.forEach(cb => {
+            if (cb.checked) checkedCount++;
+        });
+
+        const percent = Math.round((checkedCount / checkboxes.length) * 100);
+        document.getElementById('progress-fill').style.width = percent + '%';
+        document.getElementById('progress-percent').innerText = percent + '% Completed (' + checkedCount + '/' + checkboxes.length + ' Weeks)';
+
+        checkboxes.forEach(cb => {
+            localStorage.setItem('43wk_eng_' + cb.id, cb.checked);
+        });
+    }
+
+    window.onload = function() {
+        const checkboxes = document.querySelectorAll('.checkbox-custom');
+        checkboxes.forEach(cb => {
+            const val = localStorage.getItem('43wk_eng_' + cb.id);
+            if (val === 'true') cb.checked = true;
+        });
+        updateProgress();
+    };
+</script>
+
+</body>
+</html>
