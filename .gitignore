@@ -1,0 +1,18 @@
+# Build directories
+build/
+build-*/
+.ninja/
+
+# Binary outputs & object files
+*.elf
+*.hex
+*.bin
+*.o
+*.d
+
+# IDE & Toolchain files
+.vscode/
+.idea/
+*.ioc
+Debug/
+Release/
