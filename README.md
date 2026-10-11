@@ -579,3 +579,10 @@ The repository is structured to behave like a portfolio-grade embedded systems m
                                                                                                                                                                          * Topics & Practice: Earliest Deadline First (EDF), Least Laxity First (LLF), processor utilization bounds. Build host C simulator.
                                                                                                                                                                           * Scheduled Commit: feat(edf-sim): implement host C simulator for EDF scheduling feasibility
                                                                                                                                                                           Week 29: CU Boulder Course 2 - Priority Inversi
+
+## Prerequisites & Toolchain Setup
+To compile and emulate ARM Cortex-M firmware locally or in GitHub Codespaces, install the following system dependencies:
+bash
+sudo apt-get update
+sudo apt-get install -y gcc-arm-none-eabi qemu-system-arm
+
